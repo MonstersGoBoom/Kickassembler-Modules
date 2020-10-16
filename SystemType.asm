@@ -1,6 +1,6 @@
 
-//	SystemType.isNTSC == 1 if NTSC 
-//										== 0 if PAL
+//	SystemType.isNTSC 	== 1 if NTSC 
+//				== 0 if PAL
 
 SystemType:
 {
