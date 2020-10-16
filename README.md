@@ -11,7 +11,7 @@ Detect PAL / NTSC.
 
 	jsr SystemType 
 	// A 	= 0 PAL
-				= 1 NTSC 
+		= 1 NTSC 
 
 	lda SystemType.isNTSC 
 
