@@ -9,19 +9,21 @@ similar to the one Robotron arcade uses.
 # SystemType.asm 
 Detect PAL / NTSC.
 
+```
 	jsr SystemType 
 	// A 	= 0 PAL
 		= 1 NTSC 
 
 	lda SystemType.isNTSC 
+```
 
 # Debug_PrintHEX.asm 
-
+```
 	lda <value>
 	ldx <msb screen address>
 	ldy <lsb screen address>
 	jsr PrintHex
-	
+```	
 
 # TestTaskOS.asm 
 
