@@ -23,6 +23,20 @@ Detect PAL / NTSC.
 	jsr PrintHex
 	
 
+# TestTaskOS.asm 
+
+	A simple test of the above modules.
+
+	detects PAL/NTSC and adjusts the frequency the TaskOS is updated.
+
+	In order to keep logic and timing the same on PAL or NTSC machines.
+
+	Shows how to add and change tasks running in the system. 
+
+
+
+
+
 
 
 
