@@ -1,0 +1,4 @@
+*.prg
+*.sym
+*.vs
+bin/*
