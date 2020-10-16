@@ -7,7 +7,7 @@ all: TestTaskOS.prg
 
 # build test for TaskOS 
 
-TestTaskOS.prg:	TestTaskOS.asm TaskOS.asm 
+TestTaskOS.prg:	TestTaskOS.asm TaskOS.asm SystemType.asm Debug_PrintHex.asm
 	$(AS) TestTaskOS.asm -vicesymbols -symbolfile -showmem
 
 clean:

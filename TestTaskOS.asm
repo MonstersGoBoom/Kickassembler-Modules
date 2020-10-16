@@ -8,6 +8,10 @@
 // NOTE: doesn't get written to the prg
 .segment ZP [start=$02]																		
 
+framecount:	.byte 0 
+maxframes:	.byte 0
+
+
 .segment CODE [start=$0801]
 .segment DATA [startAfter="CODE"]
 
@@ -24,6 +28,18 @@ Start:
 	sei 
 	//	Initialize the TaskOS
 	jsr TaskOS.Init 
+	jsr SystemType
+
+	//	for PAL setup 
+	lda #$4 
+	sta maxframes
+	sta framecount
+
+	lda SystemType.isNTSC 
+	beq notNTSC 
+	lda #$5
+	sta maxframes
+notNTSC:
 
 	//	add some sample tasks
 	TaskOS_RegisterFunction(Sample_Ticker,5)		//	add Sample_Ticker and call it every 5 frames
@@ -35,10 +51,33 @@ Start:
 vbl:	lda $d012 
 			cmp #$80
 			bne vbl 
+
+			//	handle difference between NTSC/PAL 
+			//	here we skip a frame on NTSC so the logic will always run 50 hz 
+
+			dec framecount
+			bpl stepOS 
+			lda maxframes
+			sta framecount
+	stepOS:			
+			//	if framecount == 5 then it's the frame we should skip on NTSC machines
+			//	this value wont happen on PAL machines
+			lda framecount
+			cmp #$5 
+			beq noTick
 			//	step the TaskOS				
 			inc $d020
 			jsr TaskOS.Step
 			dec $d020 
+		noTick:
+
+			//	display it 
+			lda framecount
+			//	screen coordinates
+			ldx #$04 
+			ldy #$28 
+			jsr PrintHex
+
 			jmp vbl 
 }
 
@@ -102,3 +141,5 @@ Sample_Object:
 }
 
 	#import "TaskOS.asm"
+	#import "SystemType.asm"
+	#import "Debug_PrintHEX.asm"
