@@ -35,6 +35,14 @@ Detect PAL / NTSC.
 
 	Shows how to add and change tasks running in the system. 
 
+# APUltra.asm 
+	Decompression. 
+	
+	quick port to Kickassembler module from.
+	
+	https://github.com/emmanuel-marty/apultra
+
+
 
 
 
