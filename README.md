@@ -4,6 +4,8 @@ Handy 6510 assembly modules for Kick Assembler
 # TaskOS.asm
 A simple task system. 
 
+similar to the one Robotron arcade uses.
+
 # SystemType.asm 
 Detect PAL / NTSC.
 
