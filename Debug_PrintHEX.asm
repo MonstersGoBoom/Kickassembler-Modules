@@ -1,12 +1,15 @@
 
+//	lda <value>
+//	ldx <msb screen address>
+//	ldy <lsb screen address>
+//	jsr PrintHex
+
 PrintHex:
 {
 .segment ZP
 	DestinationAddress:	.word 0 
 
 .segment CODE
-	// Dest.          = YREG:XREG
-	// Value to utput = ACC
 		sty DestinationAddress
 		stx DestinationAddress+1
 		ldy #$00
