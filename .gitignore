@@ -2,3 +2,5 @@
 *.sym
 *.vs
 bin/*
+dontsharetesting.asm
+data/sprites.ap
