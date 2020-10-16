@@ -3,4 +3,6 @@
 *.vs
 bin/*
 dontsharetesting.asm
-data/sprites.ap
+data/*
+*.dbg
+b.bat

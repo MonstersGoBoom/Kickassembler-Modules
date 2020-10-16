@@ -76,7 +76,7 @@ vbl:	lda $d012
 			//	screen coordinates
 			ldx #$04 
 			ldy #$28 
-			jsr PrintHex
+			jsr Debug.PrintHex
 
 			jmp vbl 
 }
@@ -142,4 +142,4 @@ Sample_Object:
 
 	#import "TaskOS.asm"
 	#import "SystemType.asm"
-	#import "Debug_PrintHEX.asm"
+	#import "Debug.asm"

@@ -17,13 +17,17 @@ Detect PAL / NTSC.
 	lda SystemType.isNTSC 
 ```
 
-# Debug_PrintHEX.asm 
+# Debug.asm 
 ```
 	lda <value>
 	ldx <msb screen address>
 	ldy <lsb screen address>
-	jsr PrintHex
-```	
+
+	//	00-FF
+	jsr Debug.PrintHex
+	//	0-255
+	jsr Debug.PrintDEC8
+
 
 # TestTaskOS.asm 
 
