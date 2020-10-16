@@ -39,8 +39,8 @@ Detect PAL / NTSC.
 	Decompression. 
 	
 	quick port to Kickassembler module from.
+	[AP Ultra](https://github.com/emmanuel-marty/apultra)
 	
-	https://github.com/emmanuel-marty/apultra
 
 
 
