@@ -50,8 +50,8 @@ Detect PAL / NTSC.
 	ldx #Joystick.FIRE ( or UP,DOWN,LEFT,RIGHT )
 	jsr Joystick.Held 
 
-	//	A = 1 if it's currently held
-	//	A = 0 if not 
+	//	A = 0 if it's currently held
+	//	A = 1 if not 
 
 	lda Joystick.data+UP 
 	lda Joystick.data+DOWN
@@ -59,7 +59,7 @@ Detect PAL / NTSC.
 	lda Joystick.data+RIGHT
 	lda Joystick.data+FIRE
 
-	//	A !=0 if it's been touched in the last 8 ticks
+	//	A!=$ff if it's been touched in the last 8 ticks
 	//	(A & 1) == 0 if it's currently held 
 ```
 
