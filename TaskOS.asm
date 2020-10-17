@@ -86,23 +86,30 @@ TaskOS:
 	//	x is Timer countdown 
 	RegisterFunction: {
 		stx mod_time
-
+		sta mod_func_lsb 
 		ldx TaskIndex
+
+	taskSearch:		
+		lda UpdateMSB,x 
+		bne notFree 
+.label mod_func_lsb = *+1
+		lda #$ff 
 		sta UpdateLSB,x 
-		tya
-		sta UpdateMSB,x 
-		//	self mod
+		tya 
+		sta UpdateMSB,x
 .label mod_time = *+1			
 		lda #$00
 		sta Timer,x 
-		sta ResetTime,x 
-		dec TaskIndex
-		bpl noerror
-		//	crash with a red screen if we run out of space
-		lda #$02 
-		sta $d020 
-		jmp *
-	noerror:
+		sta ResetTime,x
+		stx TaskIndex 
+		rts
+
+	notFree:
+		dex 
+		bpl taskSearch		
+		//	fail this time but we start again next time
+		ldx #MAX_TASKS-1 
+		stx TaskIndex
 		rts
 	}
 

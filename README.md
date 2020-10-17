@@ -6,6 +6,8 @@ A simple task system.
 
 similar to the one Robotron arcade uses.
 
+note1: now when adding tasks, the system will search for a free slot to use.
+
 # SystemType.asm 
 Detect PAL / NTSC.
 
@@ -27,7 +29,39 @@ Detect PAL / NTSC.
 	jsr Debug.PrintHex
 	//	0-255
 	jsr Debug.PrintDEC8
+```
 
+# Joystick.asm 
+
+```
+	//	initialize the joystick code
+	jsr Joystick.Reset 
+
+	per vblank 
+	jsr Joystick.Poll
+
+	ldx #Joystick.FIRE ( or UP,DOWN,LEFT,RIGHT )
+	jsr Joystick.Pressed 
+
+	//	A = 1	input just pressed
+	//				if you hold the button down this will return 1 only the first time you press the button 
+	//	A = 0 all other times 
+
+	ldx #Joystick.FIRE ( or UP,DOWN,LEFT,RIGHT )
+	jsr Joystick.Held 
+
+	//	A = 1 if it's currently held
+	//	A = 0 if not 
+
+	lda Joystick.data+UP 
+	lda Joystick.data+DOWN
+	lda Joystick.data+LEFT
+	lda Joystick.data+RIGHT
+	lda Joystick.data+FIRE
+
+	//	A !=0 if it's been touched in the last 8 ticks
+	//	(A & 1) == 0 if it's currently held 
+```
 
 # TestTaskOS.asm 
 
@@ -39,6 +73,8 @@ Detect PAL / NTSC.
 
 	Shows how to add and change tasks running in the system. 
 
+	Tapping fire will add a simple task ( these tasks will kill themselves after updating for a while )
+	
 # APUltra.asm 
 	Decompression. 
 	

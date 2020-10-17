@@ -7,7 +7,7 @@ all: TestTaskOS.prg
 
 # build test for TaskOS 
 
-TestTaskOS.prg:	TestTaskOS.asm TaskOS.asm SystemType.asm Debug.asm APUltra.asm 
+TestTaskOS.prg:	TestTaskOS.asm TaskOS.asm SystemType.asm Debug.asm APUltra.asm Joystick.asm
 	$(AS) TestTaskOS.asm -vicesymbols -symbolfile -showmem
 
 TestAPUltra.prg:	TestAPUltra.asm APUltra.asm 

@@ -30,6 +30,8 @@ Start:
 	jsr TaskOS.Init 
 	jsr SystemType
 
+	jsr Joystick.Reset
+
 	//	for PAL setup 
 	lda #$4 
 	sta maxframes
@@ -42,7 +44,6 @@ Start:
 notNTSC:
 
 	//	add some sample tasks
-	TaskOS_RegisterFunction(Sample_Ticker,5)		//	add Sample_Ticker and call it every 5 frames
 	TaskOS_RegisterFunction(Sample_Object.Init,0)		//	add Sample_Object and call it right away 
 	TaskOS_RegisterFunction(Sample_Object.Init,240)	//	same but wait 240 frames first
 
@@ -78,15 +79,33 @@ vbl:	lda $d012
 			ldy #$28 
 			jsr Debug.PrintHex
 
+			jsr Joystick.Poll
+
+
+			//	if we tap fire then ADD a task
+			ldx #Joystick.FIRE 
+			jsr Joystick.Pressed
+			bne notPressed
+			TaskOS_RegisterFunction(Sample_Ticker,0)	//	add Sample Ticker 
+		notPressed:
+
 			jmp vbl 
 }
 
 //-------------------------------------------------------------
 //	just the bare example
-//	change first visible char on screen 
+//	change the char on screen for this task 
+//	x = task index
 //-------------------------------------------------------------
 Sample_Ticker:
-	inc $0400 
+	inc $0400+400,x 
+	lda $0400+400,x 
+	cmp #$ff
+	bne noKill
+	//	delete the task 
+	lda #$00 
+	sta TaskOS.UpdateMSB,x
+noKill:
 	rts
 
 //-------------------------------------------------------------
@@ -140,6 +159,9 @@ Sample_Object:
 	}
 }
 
+
+	#import "C64.asm"
+	#import "Joystick.asm"
 	#import "TaskOS.asm"
 	#import "SystemType.asm"
 	#import "Debug.asm"
