@@ -44,7 +44,7 @@ Detect PAL / NTSC.
 	jsr Joystick.Pressed 
 
 	//	A = 1	input just pressed
-	//				if you hold the button down this will return 1 only the first time you press the button 
+	//	if you hold the button down this will return 1 only the first time you press the button 
 	//	A = 0 all other times 
 
 	ldx #Joystick.FIRE ( or UP,DOWN,LEFT,RIGHT )
