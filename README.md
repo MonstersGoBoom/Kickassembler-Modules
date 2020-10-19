@@ -81,7 +81,35 @@ Detect PAL / NTSC.
 	quick port to Kickassembler module from.
 
 [AP Ultra](https://github.com/emmanuel-marty/apultra)
-	
+
+
+# Random.asm 
+
+	Random numbers 
+
+## For 8 bit numbers
+```
+	jsr Random.RND8Seed
+	jsr Random.RND8 
+	A = number 
+```
+## For 16 bit 
+```
+	jsr Random.RND16Seed 
+	jsr Random.RND16 
+	A = high byte
+	Random.result16 is the word 
+```
+
+## Using SID chip 
+```
+	jsr Random.RNDSIDInit
+	jsr Random.RNDSID 
+```	
+	or use macro 
+```	
+	RNDSID
+```
 
 
 
