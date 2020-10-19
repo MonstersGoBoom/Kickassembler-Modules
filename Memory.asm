@@ -8,6 +8,10 @@
 //	lda value
 //	memset(destination,size in bytes)
 
+//	e.g.
+//	LDA #$fe
+//	memset($d800,$3f8)
+
 .macro memset(dest,size) {
 	sta mem_source
 	lda #<size
