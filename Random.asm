@@ -23,7 +23,7 @@
 .label MAGIC8 = $c3 
 .label MAGIC16 = $1097
 
-.macro RNDSID {
+.macro RNDSID(){
 	lda $d41b 
 }
 
