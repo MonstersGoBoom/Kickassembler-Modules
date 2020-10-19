@@ -111,6 +111,19 @@ Detect PAL / NTSC.
 	RNDSID
 ```
 
+# Memory.asm 
+
+	Macros 
+```
+	lda #$value 
+	memset(dest,size in bytes)
+```
+```
+	memcpy(source,dest,size in bytes)
+```
+
+
+
 
 
 

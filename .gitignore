@@ -6,3 +6,4 @@ dontsharetesting.asm
 data/*
 *.dbg
 b.bat
+ByteDump.txt
